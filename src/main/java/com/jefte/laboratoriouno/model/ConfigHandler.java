@@ -42,6 +42,7 @@ public class ConfigHandler {
         //It tooks only de database header data
         Map<String, Object> dbConfig = (Map<String, Object>) this.data.get("database");
         //I prefer doing it with a specific object bc of getters and tosring
+        
         return new DatabaseConf(
                 String.valueOf(dbConfig.get("host")),
                 String.valueOf(dbConfig.get("username")),
