@@ -13,7 +13,6 @@ import com.jefte.laboratoriouno.model.ConfigHandler;
 public class Main {
 
     public static void main(String[] args) {
-        ConfigHandler ch = new ConfigHandler();
-        System.out.println(ch.getDatabaseConfig().toString());
+        
     }
 }

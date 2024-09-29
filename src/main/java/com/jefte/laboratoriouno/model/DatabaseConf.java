@@ -10,26 +10,32 @@ package com.jefte.laboratoriouno.model;
  */
 public class DatabaseConf {
     //Just a simple object to get information with the correct datatype...
-    private String host, username, password;
+    private String host, username, password, database;
     private int port;
 
-    public DatabaseConf(String host, String username, String password, int port) {
+    public DatabaseConf(String host,String database, String username, String password, int port) {
         this.host = host;
+        this.database = database;
         this.username = username;
         this.password = password;
         this.port = port;
     }
     
-    public DatabaseConf(String host, String username, String password) {
+    public DatabaseConf(String host, String database, String username, String password) {
         this.host = host;
+        this.database = database;
         this.username = username;
         this.password = password;
         this.port = 3306;
     }
 
+    public String getDatabase() {
+        return database;
+    }
+
     @Override
     public String toString() {
-        return "DatabaseConf{" + "host=" + host + ", username=" + username + ", password=" + password + ", port=" + port + '}';
+        return "DatabaseConf{" + "host=" + host + ", database=" + database + ", username=" + username + ", password=" + password + ", port=" + port + '}';
     }
 
     public String getHost() {

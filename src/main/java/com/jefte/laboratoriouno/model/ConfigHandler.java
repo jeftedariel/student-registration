@@ -26,7 +26,8 @@ public class ConfigHandler {
     private void load() {
         Yaml yaml = new Yaml();
         //Loading the config file
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.yml")) {
+        try {
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.yml");
             if (inputStream == null) {
                 throw new RuntimeException("Couldn't find config.yml.");
             }
@@ -45,6 +46,7 @@ public class ConfigHandler {
         
         return new DatabaseConf(
                 String.valueOf(dbConfig.get("host")),
+                String.valueOf(dbConfig.get("database")),
                 String.valueOf(dbConfig.get("username")),
                 String.valueOf(dbConfig.get("password")),
                 (int) dbConfig.get("port")
