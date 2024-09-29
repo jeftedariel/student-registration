@@ -4,6 +4,8 @@
 
 package com.jefte.laboratoriouno;
 
+import com.jefte.laboratoriouno.model.ConfigHandler;
+
 /**
  *
  * @author jefte
@@ -11,6 +13,7 @@ package com.jefte.laboratoriouno;
 public class Main {
 
     public static void main(String[] args) {
-        
+        ConfigHandler ch = new ConfigHandler();
+        System.out.println(ch.getDatabaseConfig().toString());
     }
 }
