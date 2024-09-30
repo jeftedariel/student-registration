@@ -22,26 +22,26 @@ public class DatabaseConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, ch.getDatabaseConfig().getUsername(), ch.getDatabaseConfig().getPassword());
-            System.out.println("Conexión exitosa a la base de datos");
+            System.out.println("Connection succesfull");
         } catch (ClassNotFoundException e) {
-            System.err.println("Error al cargar el controlador JDBC: " + e.getMessage());
+            System.err.println("Error while loading JDBC driver: " + e.getMessage());
         } catch (SQLException e) {
-            System.err.println("Error al establecer la conexión: " + e.getMessage());
+            System.err.println("Error during the connection: " + e.getMessage());
         }
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 
     public void disconnect() {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Conexión cerrada");
+                System.out.println("Connection closed");
             } catch (SQLException e) {
-                System.err.println("Error al cerrar la conexión: " + e.getMessage());
+                System.err.println("Error while closing the connection: " + e.getMessage());
             }
         }
+    }
+    
+    public Connection getConnection() {
+        return connection;
     }
 }
