@@ -20,7 +20,7 @@ public class DatabaseConnection {
 
     public DatabaseConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.mariadb.jdbc.Driver");
             connection = DriverManager.getConnection(url, ch.getDatabaseConfig().getUsername(), ch.getDatabaseConfig().getPassword());
             System.out.println("Connection succesfull");
         } catch (ClassNotFoundException e) {
