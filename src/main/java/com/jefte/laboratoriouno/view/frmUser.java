@@ -75,6 +75,11 @@ public class frmUser extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbUsersMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbUsers);
 
         jLabel2.setText("name");
@@ -211,6 +216,10 @@ public class frmUser extends javax.swing.JFrame {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void tbUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsersMouseClicked
+        this.ctrl.selectedRow(tbUsers, txtName, txtRole, txtBirthdate, txtEmail, txtPassword, txtDegree);
+    }//GEN-LAST:event_tbUsersMouseClicked
 
     /**
      * @param args the command line arguments
