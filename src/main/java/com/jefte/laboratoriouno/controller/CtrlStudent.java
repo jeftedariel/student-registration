@@ -4,8 +4,8 @@
  */
 package com.jefte.laboratoriouno.controller;
 
-import com.jefte.laboratoriouno.model.User;
-import com.jefte.laboratoriouno.model.UserDAO;
+import com.jefte.laboratoriouno.model.Student;
+import com.jefte.laboratoriouno.model.StudentDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,8 +18,8 @@ import javax.swing.table.TableRowSorter;
  *
  * @author jefte
  */
-public class CtrlUser {
-    UserDAO dao = new UserDAO();
+public class CtrlStudent {
+    StudentDAO dao = new StudentDAO();
     int id;
     
     public void selectedRow(JTable table,JTextField name, JTextField role, JTextField birthdate, JTextField email, JTextField password, JTextField degree) {
@@ -50,16 +50,14 @@ public class CtrlUser {
         TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(model);
         table.setRowSorter(order);
         model.setRowCount(0);
-        List<User> users = dao.read();
+        List<Student> students = dao.read();
         
-        users.forEach(user -> {Object[] row = {
-            user.getId(), 
-            user.getName(), 
-            user.getRole(), 
-            user.getBirthdate(), 
-            user.getEmail(), 
-            user.getPassword(), 
-            user.getDegree()}; 
+        students.forEach(student -> {Object[] row = {
+            student.getEnrollment(), 
+            student.getName(), 
+            student.getAddress(),
+            student.getPhone(),
+            student.getCareer_id()}; 
         model.addRow(row);});  
     }
 }

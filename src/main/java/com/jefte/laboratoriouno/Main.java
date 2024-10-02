@@ -4,7 +4,7 @@
 
 package com.jefte.laboratoriouno;
 
-import com.jefte.laboratoriouno.view.frmUser;
+import com.jefte.laboratoriouno.view.Menu;
 
 /**
  *
@@ -13,7 +13,6 @@ import com.jefte.laboratoriouno.view.frmUser;
 public class Main {
 
     public static void main(String[] args) {
-        frmUser window = new frmUser();
-        window.setVisible(true);
+        Menu.initGui();
     }
 }

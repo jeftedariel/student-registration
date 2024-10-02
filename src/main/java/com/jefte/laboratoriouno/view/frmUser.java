@@ -4,14 +4,14 @@
  */
 package com.jefte.laboratoriouno.view;
 
-import com.jefte.laboratoriouno.controller.CtrlUser;
+import com.jefte.laboratoriouno.controller.CtrlStudent;
 
 /**
  *
  * @author jefte
  */
 public class frmUser extends javax.swing.JFrame {
-    CtrlUser ctrl = new CtrlUser(); 
+    CtrlStudent ctrl = new CtrlStudent(); 
     /**
      * Creates new form frmUser
      */
@@ -20,6 +20,13 @@ public class frmUser extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.displayUsers();
+    }
+    
+    public static void initGui(){
+        frmUser w = new frmUser();
+        w.setLocationRelativeTo(null);
+        w.setResizable(false);
+        w.setVisible(true);
     }
 
     /**
@@ -58,17 +65,17 @@ public class frmUser extends javax.swing.JFrame {
 
         tbUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "#", "name", "role", "birthdate", "email", "password", "degree"
+                "enrollment", "name", "", "birthdate", "email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

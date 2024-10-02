@@ -16,25 +16,22 @@ import javax.swing.JOptionPane;
  *
  * @author jefte
  */
-public class UserDAO {
+public class StudentDAO {
 
-    public UserDAO() {
+    public StudentDAO() {
     }
 
-    public void create(User user) {
+    public void create(Student user) {
         DatabaseConnection db = new DatabaseConnection();
 
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("INSERT INTO users ("
-                    + "id, birthdate, name, role, email, password, degree) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-            ps.setInt(1, user.getId());
-            ps.setDate(2, user.getBirthdate());
-            ps.setString(3, user.getName());
-            ps.setString(4, user.getRole());
-            ps.setString(5, user.getEmail());
-            ps.setString(6, user.getPassword());
-            ps.setString(7, user.getDegree());
+            PreparedStatement ps = db.getConnection().prepareStatement("INSERT INTO students (enrollment, name, address, phone, career_id) VALUES (?, ?, ?, ?, ?)");
+            
+            ps.setInt(1, user.getEnrollment());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getAddress());
+            ps.setString(4, user.getPhone());
+            ps.setString(5, user.getCareer_id());
             ps.execute();
             JOptionPane.showMessageDialog(null, "User added succesfully");
         } catch (SQLException e) {
@@ -44,25 +41,21 @@ public class UserDAO {
         }
     }
 
-    public ArrayList<User> read() {
+    public ArrayList<Student> read() {
 
         DatabaseConnection db = new DatabaseConnection();
-        ArrayList<User> users = new ArrayList<>();
+        ArrayList<Student> users = new ArrayList<>();
 
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM users");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM students");
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-
-                int id = resultSet.getInt("id_user");
-                Date birthdate = resultSet.getDate("birthdate");
-                String name = resultSet.getString("name");
-                String role = resultSet.getString("id_role");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String degree = resultSet.getString("id_career");
-                users.add(new User(id, birthdate, name, role, email, password, degree));
-
+                users.add(new Student(
+                        resultSet.getInt("enrollment"), 
+                        resultSet.getString("name"), 
+                        resultSet.getString("address"), 
+                        resultSet.getString("phone"), 
+                        resultSet.getString("career_id")));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
@@ -72,19 +65,17 @@ public class UserDAO {
         return users;
     }
 
-    public void update(User user) {
+    public void update(Student user) {
 
         DatabaseConnection db = new DatabaseConnection();
 
-        try {
-            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE users SET birthdate= ?, name= ?, role= ?, email= ?, password= ?, degree= ? WHERE id= ?");
-            ps.setDate(1, user.getBirthdate());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getRole());
-            ps.setString(4, user.getEmail());
-            ps.setString(5, user.getPassword());
-            ps.setString(6, user.getDegree());
-            ps.setInt(7, user.getId());
+        try  {
+            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE students SET name= ?, address= ?, phone= ?, password= ?, degree= ? WHERE enrollment= ?");
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getAddress());
+            ps.setString(3, user.getPhone());
+            ps.setString(4, user.getCareer_id());
+            ps.setInt(5, user.getEnrollment());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Done");
 
