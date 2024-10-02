@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.jefte.laboratoriouno.model;
+package com.jefte.laboratoriouno.model.Student;
 
+import com.jefte.laboratoriouno.model.DatabaseConnection;
+import com.jefte.laboratoriouno.model.Student.Student;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,7 +72,7 @@ public class StudentDAO {
         DatabaseConnection db = new DatabaseConnection();
 
         try  {
-            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE students SET name= ?, address= ?, phone= ?, password= ?, degree= ? WHERE enrollment= ?");
+            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE students SET name= ?, address= ?, phone= ?, career_id= ? WHERE enrollment= ?");
             ps.setString(1, user.getName());
             ps.setString(2, user.getAddress());
             ps.setString(3, user.getPhone());
@@ -92,7 +94,7 @@ public class StudentDAO {
         DatabaseConnection db = new DatabaseConnection();
 
         try {
-            PreparedStatement preparedStatement = db.getConnection().prepareStatement("DELETE FROM users WHERE id=?");
+            PreparedStatement preparedStatement = db.getConnection().prepareStatement("DELETE FROM students WHERE enrollment=?");
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
             JOptionPane.showMessageDialog(null, "User deleted succesfully");
