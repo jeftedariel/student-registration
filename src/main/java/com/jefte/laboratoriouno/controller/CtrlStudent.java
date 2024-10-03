@@ -37,10 +37,10 @@ public class CtrlStudent {
                 birthdate.setText((table.getValueAt(row, 3).toString()));
                 email.setText((table.getValueAt(row, 4).toString()));
             } else {
-                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+                JOptionPane.showMessageDialog(null, "Select a row first.");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error de seleccion, error: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Select error: " + e.toString());
         }
     }
 

@@ -4,18 +4,18 @@
  */
 package com.jefte.laboratoriouno.view;
 
-import com.jefte.laboratoriouno.controller.CtrlCourse;
+import com.jefte.laboratoriouno.controller.CtrlStudent;
 
 /**
  *
  * @author jefte
  */
-public class frmCourses extends javax.swing.JFrame {
-    CtrlCourse ctrl = new CtrlCourse(); 
+public class frmCareers extends javax.swing.JFrame {
+    CtrlStudent ctrl = new CtrlStudent(); 
     /**
      * Creates new form frmUser
      */
-    public frmCourses() {
+    public frmCareers() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -23,7 +23,7 @@ public class frmCourses extends javax.swing.JFrame {
     }
     
     public static void initGui(){
-        frmCourses w = new frmCourses();
+        frmCareers w = new frmCareers();
         w.setLocationRelativeTo(null);
         w.setResizable(false);
         w.setVisible(true);
@@ -43,14 +43,14 @@ public class frmCourses extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbCourses = new javax.swing.JTable();
+        tbUsers = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        txtCourse = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtDuration = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtCode = new javax.swing.JTextField();
-        txtMaxCap = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtCareer = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
@@ -60,42 +60,42 @@ public class frmCourses extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Courses");
+        jLabel1.setText("Careers");
 
-        tbCourses.setModel(new javax.swing.table.DefaultTableModel(
+        tbUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "code", "course", "max cap", "duration"
+                "#", "career"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tbCourses.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbCoursesMouseClicked(evt);
+                tbUsersMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbCourses);
-        if (tbCourses.getColumnModel().getColumnCount() > 0) {
-            tbCourses.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tbUsers);
+        if (tbUsers.getColumnModel().getColumnCount() > 0) {
+            tbUsers.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel2.setText("course");
 
-        txtCourse.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCourseActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
@@ -143,31 +143,23 @@ public class frmCourses extends javax.swing.JFrame {
                 .addGap(230, 230, 230)
                 .addComponent(btnReturn)
                 .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(141, 141, 141))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddress))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMaxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd)
                     .addComponent(btnEdit)
@@ -185,27 +177,23 @@ public class frmCourses extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(btnAdd)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit)
-                            .addComponent(txtMaxCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(btnAdd)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit)
+                    .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(btnRemove)))
@@ -228,22 +216,22 @@ public class frmCourses extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayUsers(){
-        this.ctrl.loadDataCourses(tbCourses);
+        this.ctrl.loadDataStudents(tbUsers);
     }
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        this.ctrl.addCourse(tbCourses,txtCode, txtCourse, txtMaxCap, txtDuration);
-        this.ctrl.clearFields(txtCourse, txtCode, txtDuration, txtMaxCap);
+        this.ctrl.addStudent(txtName, txtAddress, txtPhone, txtCareer);
+        this.ctrl.clearFields(txtName, txtPhone, txtAddress, txtCareer);
         this.displayUsers();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void txtCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handlincode here:
-    }//GEN-LAST:event_txtCourseActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void tbCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCoursesMouseClicked
-        this.ctrl.selectedRow(tbCourses, txtCode, txtCourse, txtMaxCap, txtDuration);
-    }//GEN-LAST:event_tbCoursesMouseClicked
+    private void tbUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsersMouseClicked
+        this.ctrl.selectedRow(tbUsers, txtName, txtAddress, txtPhone, txtCareer);
+    }//GEN-LAST:event_tbUsersMouseClicked
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         this.dispose();
@@ -251,13 +239,13 @@ public class frmCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        this.ctrl.updatedCourse(tbCourses,txtCode, txtCourse, txtMaxCap, txtDuration);
-        this.ctrl.clearFields(txtCourse, txtCode, txtDuration, txtMaxCap);
+        this.ctrl.updatedStudent(txtName, txtAddress, txtPhone, txtCareer);
+        this.ctrl.clearFields(txtName, txtPhone, txtAddress, txtCareer);
         this.displayUsers();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        this.ctrl.deleteCourse();
+        this.ctrl.deleteStudent();
         this.displayUsers();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
@@ -275,10 +263,10 @@ public class frmCourses extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbCourses;
-    private javax.swing.JTextField txtCode;
-    private javax.swing.JTextField txtCourse;
-    private javax.swing.JTextField txtDuration;
-    private javax.swing.JTextField txtMaxCap;
+    private javax.swing.JTable tbUsers;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtCareer;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }
