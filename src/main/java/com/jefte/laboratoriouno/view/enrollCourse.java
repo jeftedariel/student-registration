@@ -19,7 +19,7 @@ public class enrollCourse extends javax.swing.JFrame {
         initComponents();
         this.jLabel4.setVisible(false);
         ctrl.setEnrollments(jComboBox1);
-        ctrl.setCodes(jComboBox2);
+        ctrl.setCodes(jComboBox1,jComboBox2);
         ctrl.getCount(jComboBox2, jLabel3);
         ctrl.checkEnrolled(jComboBox1, jComboBox2, jButton1, jLabel4);
     }
@@ -139,6 +139,8 @@ public class enrollCourse extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         
         ctrl.checkEnrolled(jComboBox1, jComboBox2, jButton1, jLabel4);
+        
+        ctrl.setCodes(jComboBox1,jComboBox2);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

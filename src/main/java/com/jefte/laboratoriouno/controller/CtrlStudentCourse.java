@@ -48,15 +48,29 @@ public class CtrlStudentCourse {
         enrollment.setModel(new javax.swing.DefaultComboBoxModel<>(studentCourses.stream().map(i -> i).toArray()));
     }
     
-    public void setCodes(JComboBox code){
+    public void setCodes(JComboBox enrollment, JComboBox code){
         DatabaseConnection db = new DatabaseConnection();
-        ArrayList<String> studentCourses = new ArrayList<>();
-
+        ArrayList<String> studentCodes = new ArrayList<>();
+        String career_id="";
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code FROM courses");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT career_id FROM students where enrollment = ?");
+            
+            ps.setString(1, enrollment.getSelectedItem().toString());
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                studentCourses.add(
+               career_id= resultSet.getString("career_id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } 
+        
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code FROM career_courses where career_id = ?");
+            ps.setString(1, career_id);
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+                studentCodes.add(
                         resultSet.getString("code")
                 );
             }
@@ -66,11 +80,11 @@ public class CtrlStudentCourse {
             db.disconnect();
         }
         
-        code.setModel(new javax.swing.DefaultComboBoxModel<>(studentCourses.stream().map(i -> i).toArray()));
+        code.setModel(new javax.swing.DefaultComboBoxModel<>(studentCodes.stream().map(i -> i).toArray()));
     }
     
     public void getCount(JComboBox code, JLabel label){
-        label.setText("Students Registered: "+ String.valueOf(this.dao.countCourseStudents(code.getSelectedItem().toString())));
+       label.setText("Students Registered: "+ String.valueOf(this.dao.countCourseStudents(code.getSelectedItem().toString())));
     }
     
     public void checkEnrolled(JComboBox enrollment, JComboBox code, JButton Register, JLabel Warning){
