@@ -10,12 +10,12 @@ import com.jefte.laboratoriouno.controller.CtrlStudent;
  *
  * @author jefte
  */
-public class frmUser extends javax.swing.JFrame {
+public class frmStudents extends javax.swing.JFrame {
     CtrlStudent ctrl = new CtrlStudent(); 
     /**
      * Creates new form frmUser
      */
-    public frmUser() {
+    public frmStudents() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -23,7 +23,7 @@ public class frmUser extends javax.swing.JFrame {
     }
     
     public static void initGui(){
-        frmUser w = new frmUser();
+        frmStudents w = new frmStudents();
         w.setLocationRelativeTo(null);
         w.setResizable(false);
         w.setVisible(true);
@@ -60,7 +60,7 @@ public class frmUser extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Users");
+        jLabel1.setText("Students");
 
         tbUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,8 +136,8 @@ public class frmUser extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(197, 197, 197)
                 .addComponent(btnReturn)
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
@@ -169,14 +169,14 @@ public class frmUser extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnReturn)))
-                .addGap(15, 15, 15)
+                        .addComponent(btnReturn)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)

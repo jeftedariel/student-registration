@@ -54,8 +54,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel1.setText("Cruds");
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel1.setText("Registration");
 
         jButton3.setText("Careers");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,16 +78,16 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addGap(135, 135, 135)
                         .addComponent(jLabel1)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
@@ -100,7 +100,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        frmUser.initGui();
+        frmStudents.initGui();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
