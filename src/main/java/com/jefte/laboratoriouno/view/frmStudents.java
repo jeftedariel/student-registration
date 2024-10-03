@@ -20,6 +20,7 @@ public class frmStudents extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.displayUsers();
+        this.ctrl.setCareers(cbxCareer);
     }
     
     public static void initGui(){
@@ -50,12 +51,12 @@ public class frmStudents extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
-        txtCareer = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        cbxCareer = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,7 +144,10 @@ public class frmStudents extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtAddress)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +161,8 @@ public class frmStudents extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtAddress))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxCareer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd)
                     .addComponent(btnEdit)
@@ -187,7 +190,7 @@ public class frmStudents extends javax.swing.JFrame {
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit)
-                    .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxCareer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,8 +223,8 @@ public class frmStudents extends javax.swing.JFrame {
     }
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        this.ctrl.addStudent(txtName, txtAddress, txtPhone, txtCareer);
-        this.ctrl.clearFields(txtName, txtPhone, txtAddress, txtCareer);
+        this.ctrl.addStudent(txtName, txtAddress, txtPhone, cbxCareer);
+        this.ctrl.clearFields(txtName, txtPhone, txtAddress);
         this.displayUsers();
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -230,7 +233,7 @@ public class frmStudents extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void tbUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsersMouseClicked
-        this.ctrl.selectedRow(tbUsers, txtName, txtAddress, txtPhone, txtCareer);
+        this.ctrl.selectedRow(tbUsers, txtName, txtAddress, txtPhone, cbxCareer);
     }//GEN-LAST:event_tbUsersMouseClicked
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -239,8 +242,8 @@ public class frmStudents extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        this.ctrl.updatedStudent(txtName, txtAddress, txtPhone, txtCareer);
-        this.ctrl.clearFields(txtName, txtPhone, txtAddress, txtCareer);
+        this.ctrl.updatedStudent(txtName, txtAddress, txtPhone, cbxCareer);
+        this.ctrl.clearFields(txtName, txtPhone, txtAddress);
         this.displayUsers();
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -256,6 +259,7 @@ public class frmStudents extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnReturn;
+    private javax.swing.JComboBox<String> cbxCareer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -265,7 +269,6 @@ public class frmStudents extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbUsers;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtCareer;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables

@@ -4,13 +4,16 @@
  */
 package com.jefte.laboratoriouno.controller;
 
+import com.jefte.laboratoriouno.model.DatabaseConnection;
 import com.jefte.laboratoriouno.model.Student.Student;
 import com.jefte.laboratoriouno.model.Student.StudentDAO;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -27,7 +30,7 @@ public class CtrlStudent {
     StudentDAO dao = new StudentDAO();
     int id;
 
-    public void selectedRow(JTable table, JTextField name, JTextField role, JTextField birthdate, JTextField email) {
+    public void selectedRow(JTable table, JTextField name, JTextField role, JTextField birthdate, JComboBox career) {
         try {
             int row = table.getSelectedRow();
             if (row >= 0) {
@@ -35,7 +38,7 @@ public class CtrlStudent {
                 name.setText((table.getValueAt(row, 1).toString()));
                 role.setText((table.getValueAt(row, 2).toString()));
                 birthdate.setText((table.getValueAt(row, 3).toString()));
-                email.setText((table.getValueAt(row, 4).toString()));
+                career.setSelectedItem(table.getValueAt(row, 4).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Select a row first.");
             }
@@ -61,23 +64,42 @@ public class CtrlStudent {
             model.addRow(row);
         });
     }
+    
+    public void setCareers(JComboBox cbxCareers){
+        DatabaseConnection db = new DatabaseConnection();
+        HashMap<String,String> careers = new HashMap<>();
 
-    public void addStudent(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JTextField txtCareer_id) {
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM careers");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                careers.put(resultSet.getString("career_id"), resultSet.getString("career_name"));
+                
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        
+        cbxCareers.setModel(new javax.swing.DefaultComboBoxModel<>(careers.values().toArray()));
+    }
+    
+    public void addStudent(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JComboBox cbxCareer) {
         Random rand = new Random();
-        this.dao.create(new Student(rand.nextInt(1000),txtName.getText(),txtPhone.getText(), txtAddress.getText(), txtCareer_id.getText()));
+        this.dao.create(new Student(rand.nextInt(1000),txtName.getText(),txtPhone.getText(), txtAddress.getText(), cbxCareer.getSelectedItem().toString()));
         
     }
-    public void updatedStudent(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JTextField txtCareer_id) {
-            this.dao.update(new Student(this.id,txtName.getText(),txtPhone.getText(), txtAddress.getText(), txtCareer_id.getText()));
+    public void updatedStudent(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JComboBox cbxCareer) {
+            this.dao.update(new Student(this.id,txtName.getText(),txtPhone.getText(), txtAddress.getText(), cbxCareer.getSelectedItem().toString()));
     }
 
     public void deleteStudent(){
         this.dao.delete(this.id);
     }
-    public void clearFields(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JTextField txtCareer_id) {
+    public void clearFields(JTextField txtName, JTextField txtPhone, JTextField txtAddress) {
         txtName.setText("");
         txtPhone.setText("");
         txtAddress.setText("");
-        txtCareer_id.setText("");
     }
 }
