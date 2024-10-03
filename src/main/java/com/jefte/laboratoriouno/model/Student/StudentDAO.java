@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -130,5 +131,24 @@ public class StudentDAO {
             db.disconnect();
         }
 
+    }
+    
+    public HashMap<String, String> getCareers(){
+        DatabaseConnection db = new DatabaseConnection();
+        HashMap<String,String> careers = new HashMap<>();
+
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM careers");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                careers.put(resultSet.getString("career_id"), resultSet.getString("career_name"));
+                
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return careers;
     }
 }

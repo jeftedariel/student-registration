@@ -4,9 +4,6 @@
  */
 package com.jefte.laboratoriouno.model.Career;
 
-import com.jefte.laboratoriouno.model.Course.*;
-import com.jefte.laboratoriouno.model.Student.*;
-
 /**
  *
  * @author jefte

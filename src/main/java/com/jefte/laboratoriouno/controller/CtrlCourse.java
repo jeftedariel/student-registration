@@ -6,9 +6,7 @@ package com.jefte.laboratoriouno.controller;
 
 import com.jefte.laboratoriouno.model.Course.Course;
 import com.jefte.laboratoriouno.model.Course.CourseDAO;
-import com.jefte.laboratoriouno.model.Student.Student;
 import java.util.List;
-import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;

@@ -4,8 +4,6 @@
  */
 package com.jefte.laboratoriouno.model;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Map;
 import javax.swing.JOptionPane;

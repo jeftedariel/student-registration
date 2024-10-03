@@ -4,13 +4,8 @@
  */
 package com.jefte.laboratoriouno.controller;
 
-import com.jefte.laboratoriouno.model.DatabaseConnection;
 import com.jefte.laboratoriouno.model.Student.Student;
 import com.jefte.laboratoriouno.model.Student.StudentDAO;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JComboBox;
@@ -66,23 +61,7 @@ public class CtrlStudent {
     }
     
     public void setCareers(JComboBox cbxCareers){
-        DatabaseConnection db = new DatabaseConnection();
-        HashMap<String,String> careers = new HashMap<>();
-
-        try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM careers");
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                careers.put(resultSet.getString("career_id"), resultSet.getString("career_name"));
-                
-            }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        } finally {
-            db.disconnect();
-        }
-        
-        cbxCareers.setModel(new javax.swing.DefaultComboBoxModel<>(careers.values().toArray()));
+        cbxCareers.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getCareers().values().toArray()));
     }
     
     public void addStudent(JTextField txtName, JTextField txtPhone, JTextField txtAddress, JComboBox cbxCareer) {

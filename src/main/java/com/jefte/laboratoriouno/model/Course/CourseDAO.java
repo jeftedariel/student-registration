@@ -5,7 +5,6 @@
 package com.jefte.laboratoriouno.model.Course;
 
 import com.jefte.laboratoriouno.model.DatabaseConnection;
-import com.jefte.laboratoriouno.model.Student.Student;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

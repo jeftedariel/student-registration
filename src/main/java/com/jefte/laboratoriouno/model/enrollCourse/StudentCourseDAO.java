@@ -4,12 +4,13 @@
  */
 package com.jefte.laboratoriouno.model.enrollCourse;
 
-import com.jefte.laboratoriouno.model.Career.*;
 import com.jefte.laboratoriouno.model.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,5 +104,60 @@ public class StudentCourseDAO {
 
         return false;
     }
+    
+    public HashMap<String,String> getStudentEnrollment(){
+        DatabaseConnection db = new DatabaseConnection();
+        HashMap<String, String> studentCourses = new HashMap<>();
+        
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code, course_name FROM courses");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                studentCourses.put(resultSet.getString("code"), resultSet.getString("course_name"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+            return studentCourses;
+        }
+    }
+    
+    public ArrayList<String> getStudentCodes(JComboBox enrollment){
+        DatabaseConnection db = new DatabaseConnection();
+        ArrayList<String> studentCodes = new ArrayList<>();
+        String career_id="";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT career_id FROM students where enrollment = ?");
+            
+            ps.setString(1, enrollment.getSelectedItem().toString());
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+               career_id= resultSet.getString("career_id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } 
+        
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code FROM career_courses where career_id = ?");
+            ps.setString(1, career_id);
+            ResultSet resultSet = ps.executeQuery();
+            
+            while (resultSet.next()) {
+                studentCodes.add(
+                        resultSet.getString("code")
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+            return studentCodes;
+        }
+        
+    }
+    
+            
 
 }

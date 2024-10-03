@@ -4,13 +4,8 @@
  */
 package com.jefte.laboratoriouno.controller;
 
-import com.jefte.laboratoriouno.model.DatabaseConnection;
 import com.jefte.laboratoriouno.model.enrollCourse.StudentCourse;
 import com.jefte.laboratoriouno.model.enrollCourse.StudentCourseDAO;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,59 +23,11 @@ public class CtrlStudentCourse {
     }
     
     public void setEnrollments(JComboBox enrollment){
-        DatabaseConnection db = new DatabaseConnection();
-        ArrayList<String> studentCourses = new ArrayList<>();
-
-        try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT enrollment FROM students");
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                studentCourses.add(
-                        resultSet.getString("enrollment")
-                );
-            }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        } finally {
-            db.disconnect();
-        }
-        
-        enrollment.setModel(new javax.swing.DefaultComboBoxModel<>(studentCourses.stream().map(i -> i).toArray()));
+        enrollment.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentEnrollment().values().toArray()));
     }
     
     public void setCodes(JComboBox enrollment, JComboBox code){
-        DatabaseConnection db = new DatabaseConnection();
-        ArrayList<String> studentCodes = new ArrayList<>();
-        String career_id="";
-        try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT career_id FROM students where enrollment = ?");
-            
-            ps.setString(1, enrollment.getSelectedItem().toString());
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-               career_id= resultSet.getString("career_id");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        } 
-        
-        try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code FROM career_courses where career_id = ?");
-            ps.setString(1, career_id);
-            ResultSet resultSet = ps.executeQuery();
-            
-            while (resultSet.next()) {
-                studentCodes.add(
-                        resultSet.getString("code")
-                );
-            }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        } finally {
-            db.disconnect();
-        }
-        
-        code.setModel(new javax.swing.DefaultComboBoxModel<>(studentCodes.stream().map(i -> i).toArray()));
+        code.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentCodes(enrollment).stream().map(i -> i).toArray()));
     }
     
     public void getCount(JComboBox code, JLabel label){

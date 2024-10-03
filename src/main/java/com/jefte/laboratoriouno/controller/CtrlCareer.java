@@ -6,7 +6,6 @@ package com.jefte.laboratoriouno.controller;
 
 import com.jefte.laboratoriouno.model.Career.Career;
 import com.jefte.laboratoriouno.model.Career.CareerDAO;
-import com.jefte.laboratoriouno.model.Course.Course;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
