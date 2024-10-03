@@ -4,9 +4,7 @@
  */
 package com.jefte.laboratoriouno.model.Career;
 
-import com.jefte.laboratoriouno.model.Course.*;
 import com.jefte.laboratoriouno.model.DatabaseConnection;
-import com.jefte.laboratoriouno.model.Student.Student;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,12 +26,10 @@ public class CareerDAO {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement("INSERT INTO careers (career_id, career_name) VALUES (?, ?)");
             
-            ps.setString(1, course.getCode());
-            ps.setString(2, course.getName());
-            ps.setByte(3, course.getMax_capacity());
-            ps.setString(4, course.getDuration());
+            ps.setString(1, career.getId());
+            ps.setString(2, career.getName());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Course added succesfully");
+            JOptionPane.showMessageDialog(null, "Career added succesfully");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "An error ocurred while adding a course: " + e.toString());
         } finally {
@@ -44,17 +40,15 @@ public class CareerDAO {
     public ArrayList<Career> read() {
 
         DatabaseConnection db = new DatabaseConnection();
-        ArrayList<Career> courses = new ArrayList<>();
+        ArrayList<Career> careers = new ArrayList<>();
 
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM courses");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM careers");
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                courses.add(new Career(
-                        resultSet.getString("code"),
-                        resultSet.getString("course_name"),
-                        Byte.parseByte(resultSet.getString("max_capacity")),
-                        resultSet.getString("duration")
+                careers.add(new Career(
+                        resultSet.getString("career_id"),
+                        resultSet.getString("career_name")
                         ));
             }
         } catch (SQLException e) {
@@ -62,20 +56,18 @@ public class CareerDAO {
         } finally {
             db.disconnect();
         }
-        return courses;
+        return careers;
     }
 
-    public void update(Career course) {
+    public void update(Career career) {
 
         DatabaseConnection db = new DatabaseConnection();
 
         try  {
-            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE courses SET code= ?, course_name= ?, max_capacity= ?, duration= ? WHERE code= ?");
-            ps.setString(1, course.getCode());
-            ps.setString(2, course.getName());
-            ps.setByte(3, course.getMax_capacity());
-            ps.setString(4, course.getDuration());
-            ps.setString(5, course.getCode());
+            PreparedStatement ps = db.getConnection().prepareStatement("UPDATE careers SET career_id= ?, career_name= ? WHERE career_id= ?");
+            ps.setString(1, career.getId());
+            ps.setString(2, career.getName());
+            ps.setString(3, career.getId());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Done");
 
@@ -92,10 +84,10 @@ public class CareerDAO {
         DatabaseConnection db = new DatabaseConnection();
 
         try {
-            PreparedStatement preparedStatement = db.getConnection().prepareStatement("DELETE FROM courses WHERE code=?");
+            PreparedStatement preparedStatement = db.getConnection().prepareStatement("DELETE FROM careers WHERE career_id=?");
             preparedStatement.setString(1, code);
             preparedStatement.execute();
-            JOptionPane.showMessageDialog(null, "Course deleted succesfully");
+            JOptionPane.showMessageDialog(null, "Career deleted succesfully");
 
         } catch (SQLException e) {
 
