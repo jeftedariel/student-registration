@@ -26,7 +26,7 @@ public class StudentCourseDAO {
         DatabaseConnection db = new DatabaseConnection();
 
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("INSERT INTO student_course (enrollment, code) VALUES (?, ?)");
+            PreparedStatement ps = db.getConnection().prepareStatement("INSERT INTO student_course (enrollment, code) VALUES (?, (SELECT code FROM courses WHERE course_name = ?));");
 
             ps.setString(1, sc.getEnrollment());
             ps.setString(2, sc.getCode());
@@ -65,7 +65,7 @@ public class StudentCourseDAO {
         DatabaseConnection db = new DatabaseConnection();
         int total = 0;
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT COUNT(*) FROM student_course where code = ?");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT COUNT(*) FROM student_course sc JOIN courses c ON sc.code = c.code WHERE c.course_name = ?;");
             ps.setString(1, code);
             ResultSet resultSet = ps.executeQuery();
 
@@ -87,7 +87,7 @@ public class StudentCourseDAO {
         DatabaseConnection db = new DatabaseConnection();
 
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT COUNT(*) FROM student_course where enrollment = ? and code = ? ");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT COUNT(*) FROM student_course sc JOIN courses c ON sc.code = c.code WHERE sc.enrollment = ? AND c.course_name = ?;");
             ps.setString(1, enrollment);
             ps.setString(2, code);
             ResultSet resultSet = ps.executeQuery();
@@ -105,25 +105,25 @@ public class StudentCourseDAO {
         return false;
     }
     
-    public HashMap<String,String> getStudentEnrollment(){
+    public ArrayList<String> getStudentEnrollment(){
         DatabaseConnection db = new DatabaseConnection();
-        HashMap<String, String> studentCourses = new HashMap<>();
+        ArrayList<String> studentEnrollment = new ArrayList<>();
         
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code, course_name FROM courses");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT enrollment FROM students");
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                studentCourses.put(resultSet.getString("code"), resultSet.getString("course_name"));
+                studentEnrollment.add(resultSet.getString("enrollment"));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
             db.disconnect();
-            return studentCourses;
+            return studentEnrollment;
         }
     }
     
-    public ArrayList<String> getStudentCodes(JComboBox enrollment){
+    public ArrayList<String> getStudentCourses(JComboBox enrollment){
         DatabaseConnection db = new DatabaseConnection();
         ArrayList<String> studentCodes = new ArrayList<>();
         String career_id="";
@@ -140,13 +140,13 @@ public class StudentCourseDAO {
         } 
         
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT code FROM career_courses where career_id = ?");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT c.course_name FROM career_courses cc JOIN courses c ON cc.code = c.code WHERE cc.career_id = ?");
             ps.setString(1, career_id);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
                 studentCodes.add(
-                        resultSet.getString("code")
+                        resultSet.getString("course_name")
                 );
             }
         } catch (SQLException e) {

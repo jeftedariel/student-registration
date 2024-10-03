@@ -23,11 +23,11 @@ public class CtrlStudentCourse {
     }
     
     public void setEnrollments(JComboBox enrollment){
-        enrollment.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentEnrollment().values().toArray()));
+        enrollment.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentEnrollment().stream().map(i->i).toArray()));
     }
     
-    public void setCodes(JComboBox enrollment, JComboBox code){
-        code.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentCodes(enrollment).stream().map(i -> i).toArray()));
+    public void setCourses(JComboBox enrollment, JComboBox courses){
+        courses.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getStudentCourses(enrollment).stream().map(i -> i).toArray()));
     }
     
     public void getCount(JComboBox code, JLabel label){
