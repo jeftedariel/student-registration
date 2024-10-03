@@ -7,6 +7,7 @@ package com.jefte.laboratoriouno.controller;
 import com.jefte.laboratoriouno.model.Career.Career;
 import com.jefte.laboratoriouno.model.Career.CareerDAO;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -67,5 +68,10 @@ public class CtrlCareer {
     public void clearFields(JTextField identifier, JTextField career) {
         identifier.setText("");
         career.setText("");
+    }
+    
+    public void validate(JButton add, JButton edit, JTextField identifier, JTextField career, String regex){
+        add.setEnabled(identifier.getText().matches(regex) && career.getText().matches(regex));
+        edit.setEnabled(identifier.getText().matches(regex) && career.getText().matches(regex));
     }
 }

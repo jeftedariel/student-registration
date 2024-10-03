@@ -20,6 +20,7 @@ public class frmCareers extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.displayUsers();
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
     }
     
     public static void initGui(){
@@ -94,12 +95,22 @@ public class frmCareers extends javax.swing.JFrame {
                 txtCareerActionPerformed(evt);
             }
         });
+        txtCareer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCareerKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Identifier");
 
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
+            }
+        });
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdKeyReleased(evt);
             }
         });
 
@@ -216,9 +227,9 @@ public class frmCareers extends javax.swing.JFrame {
         this.ctrl.clearFields(txtId, txtCareer);
         this.displayUsers();
     }//GEN-LAST:event_btnAddActionPerformed
-
+    
     private void txtCareerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCareerActionPerformed
-        // TODO add your handlincode here:
+        
     }//GEN-LAST:event_txtCareerActionPerformed
 
     private void tbCareersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCareersMouseClicked
@@ -244,6 +255,14 @@ public class frmCareers extends javax.swing.JFrame {
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
+    }//GEN-LAST:event_txtIdKeyReleased
+
+    private void txtCareerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCareerKeyReleased
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
+    }//GEN-LAST:event_txtCareerKeyReleased
 
 
 
