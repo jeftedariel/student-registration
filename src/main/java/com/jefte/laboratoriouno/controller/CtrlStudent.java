@@ -6,9 +6,12 @@ package com.jefte.laboratoriouno.controller;
 
 import com.jefte.laboratoriouno.model.Student.Student;
 import com.jefte.laboratoriouno.model.Student.StudentDAO;
+import com.jefte.laboratoriouno.model.Student.StudentInfo;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,6 +27,10 @@ public class CtrlStudent {
 
     StudentDAO dao = new StudentDAO();
     int id;
+
+    public int getId() {
+        return id;
+    }
 
     public void selectedRow(JTable table, JTextField name, JTextField role, JTextField birthdate, JComboBox career) {
         try {
@@ -59,6 +66,22 @@ public class CtrlStudent {
             model.addRow(row);
         });
     }
+    
+    public void loadStudentInfo(JTable table, int enrollment) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(model);
+        table.setRowSorter(order);
+        model.setRowCount(0);
+        List<StudentInfo> studentsInfo = dao.studentInfo(enrollment);
+
+        studentsInfo.forEach(studentInfo -> {
+            Object[] row = {
+                studentInfo.getCourse_name(),
+            };
+            model.addRow(row);
+        });
+    }
+    
     
     public void setCareers(JComboBox cbxCareers){
         cbxCareers.setModel(new javax.swing.DefaultComboBoxModel<>(this.dao.getCareers().values().toArray()));

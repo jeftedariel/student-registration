@@ -24,19 +24,25 @@ public class CtrlCareer {
     CareerDAO dao = new CareerDAO();
     String id;
 
-    public void selectedRow(JTable table, JTextField identifier, JTextField career) {
+    public void selectedRow(JTable table, JTextField identifier, JTextField career, JButton addCourse) {
         try {
             int row = table.getSelectedRow();
             if (row >= 0) {
                 this.id = table.getValueAt(row, 0).toString();
                 identifier.setText((table.getValueAt(row, 0).toString()));
                 career.setText((table.getValueAt(row, 1).toString()));
+                addCourse.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Select a row first.");
+                addCourse.setEnabled(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Select error: " + e.toString());
         }
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void loadDataCareers(JTable table) {

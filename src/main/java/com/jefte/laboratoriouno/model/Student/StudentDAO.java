@@ -151,4 +151,28 @@ public class StudentDAO {
         }
         return careers;
     }
+    
+    
+    public ArrayList<StudentInfo> studentInfo(int enrollment) {
+
+        DatabaseConnection db = new DatabaseConnection();
+        ArrayList<StudentInfo> si = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT s.name AS student_name, c.career_name, crs.course_name FROM students s JOIN careers c ON s.career_id = c.career_id JOIN student_course sc ON s.enrollment = sc.enrollment JOIN courses crs ON sc.code = crs.code WHERE s.enrollment = ?");
+            ps.setInt(1, enrollment);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                si.add(new StudentInfo(
+                        resultSet.getString("student_name"),
+                        resultSet.getString("career_name"),
+                        resultSet.getString("course_name")));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return si;
+    }
 }

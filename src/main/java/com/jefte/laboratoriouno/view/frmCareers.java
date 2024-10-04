@@ -21,6 +21,7 @@ public class frmCareers extends javax.swing.JFrame {
         this.setResizable(false);
         this.displayUsers();
         this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
+        this.jButton1.setEnabled(false);
     }
     
     public static void initGui(){
@@ -53,6 +54,7 @@ public class frmCareers extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +144,13 @@ public class frmCareers extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Add Course");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -156,18 +165,24 @@ public class frmCareers extends javax.swing.JFrame {
                         .addComponent(btnReturn)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(373, 373, 373))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(416, 416, 416)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCareer, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(373, 373, 373)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdd)
                             .addComponent(btnEdit)
-                            .addComponent(btnRemove))
+                            .addComponent(btnRemove)
+                            .addComponent(btnAdd))
                         .addGap(122, 122, 122))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -189,7 +204,9 @@ public class frmCareers extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEdit)
                                 .addGap(19, 19, 19)
-                                .addComponent(btnRemove)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRemove)
+                                    .addComponent(jButton1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -233,7 +250,8 @@ public class frmCareers extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCareerActionPerformed
 
     private void tbCareersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCareersMouseClicked
-        this.ctrl.selectedRow(tbCareers, txtId, txtCareer);
+        this.ctrl.selectedRow(tbCareers, txtId, txtCareer,this.jButton1);
+        
     }//GEN-LAST:event_tbCareersMouseClicked
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -257,12 +275,16 @@ public class frmCareers extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
-        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z ]|[0-9])+$");
     }//GEN-LAST:event_txtIdKeyReleased
 
     private void txtCareerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCareerKeyReleased
-        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z]|[0-9])+$");
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtId, this.txtCareer, "^([a-zA-Z ]|[0-9])+$");
     }//GEN-LAST:event_txtCareerKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CareerCourses.initGui(this.ctrl.getId());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
 
@@ -271,6 +293,7 @@ public class frmCareers extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnReturn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

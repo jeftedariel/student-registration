@@ -7,6 +7,7 @@ package com.jefte.laboratoriouno.controller;
 import com.jefte.laboratoriouno.model.Course.Course;
 import com.jefte.laboratoriouno.model.Course.CourseDAO;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -73,5 +74,10 @@ public class CtrlCourse {
         course.setText("");
         maxCap.setText("");
         duration.setText("");
+    }
+    
+    public void validate(JButton add, JButton edit, JTextField code, JTextField course, JTextField maxcap, JTextField duration, String regex, String regex2){
+        add.setEnabled(code.getText().matches(regex) && course.getText().matches(regex) && maxcap.getText().matches(regex2) && duration.getText().matches(regex));
+        edit.setEnabled(code.getText().matches(regex) && course.getText().matches(regex) && maxcap.getText().matches(regex2) && duration.getText().matches(regex));
     }
 }

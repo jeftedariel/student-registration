@@ -20,6 +20,8 @@ public class frmCourses extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.displayUsers();
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
     }
     
     public static void initGui(){
@@ -98,10 +100,33 @@ public class frmCourses extends javax.swing.JFrame {
                 txtCourseActionPerformed(evt);
             }
         });
+        txtCourse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCourseKeyReleased(evt);
+            }
+        });
 
         jLabel3.setText("duration");
 
+        txtDuration.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDurationKeyReleased(evt);
+            }
+        });
+
         jLabel4.setText("code");
+
+        txtCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodeKeyReleased(evt);
+            }
+        });
+
+        txtMaxCap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMaxCapKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("max cap");
 
@@ -162,12 +187,9 @@ public class frmCourses extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMaxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd)
                     .addComponent(btnEdit)
@@ -243,6 +265,8 @@ public class frmCourses extends javax.swing.JFrame {
 
     private void tbCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCoursesMouseClicked
         this.ctrl.selectedRow(tbCourses, txtCode, txtCourse, txtMaxCap, txtDuration);
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
     }//GEN-LAST:event_tbCoursesMouseClicked
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -260,6 +284,26 @@ public class frmCourses extends javax.swing.JFrame {
         this.ctrl.deleteCourse();
         this.displayUsers();
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void txtCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodeKeyReleased
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
+    }//GEN-LAST:event_txtCodeKeyReleased
+
+    private void txtCourseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCourseKeyReleased
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
+    }//GEN-LAST:event_txtCourseKeyReleased
+
+    private void txtMaxCapKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxCapKeyReleased
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
+    }//GEN-LAST:event_txtMaxCapKeyReleased
+
+    private void txtDurationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDurationKeyReleased
+        
+        this.ctrl.validate(this.btnAdd, this.btnEdit,this.txtCode, this.txtCourse,this.txtMaxCap, this.txtDuration , "^([a-zA-Z ]|[0-9])+$", "[\\d]+");
+    }//GEN-LAST:event_txtDurationKeyReleased
 
 
 
